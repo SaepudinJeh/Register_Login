@@ -54,3 +54,35 @@ save() {
     });
   }
 ```
+
+
+### Method Check Existing User
+```Ruby
+checkExistUser() {
+    return new Promise((resolve, reject) => {
+      #
+      dbConnect('users', async (db) => {
+        try {
+          const emailUser = this.userData.email;
+
+          const user = await db.findOne({
+            email: emailUser,
+          });
+
+          if (!user) {
+            resolve({
+              check: false,
+            });
+          } else if (emailUser === user.email) {
+            resolve({
+              check: true,
+              message: 'This email is already in use',
+            });
+          }
+        } catch (error) {
+          return reject(error);
+        }
+      });
+    });
+  }
+```
