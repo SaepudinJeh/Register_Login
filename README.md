@@ -60,11 +60,13 @@ save() {
 ```Ruby
 checkExistUser() {
     return new Promise((resolve, reject) => {
-      #
+      # using "users" tables
       dbConnect('users', async (db) => {
         try {
+          # Get payload Email
           const emailUser = this.userData.email;
-
+          
+          
           const user = await db.findOne({
             email: emailUser,
           });
