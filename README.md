@@ -71,7 +71,7 @@ checkExistUser() {
             email: emailUser,
           });
           
-          
+          # If the user does not exist then return false, if there is already a true return
           if (!user) {
             resolve({
               check: false,
