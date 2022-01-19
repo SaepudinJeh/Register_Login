@@ -1,7 +1,7 @@
 # Register_Login
 
 
-### Class User
+## Class User
 
 ```Ruby
 class User {
@@ -66,11 +66,12 @@ checkExistUser() {
           # Get payload Email
           const emailUser = this.userData.email;
           
-          
+          # Check users in databases based on email
           const user = await db.findOne({
             email: emailUser,
           });
-
+          
+          
           if (!user) {
             resolve({
               check: false,
