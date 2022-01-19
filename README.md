@@ -1,6 +1,8 @@
 # Register_Login
 
 
+### Class User
+
 ```Ruby
 class User {
   constructor(userData) {
@@ -8,23 +10,7 @@ class User {
   }
 
   save() {
-    return new Promise((resolve, reject) => {
-      try {
-        dbConnect('users', async (db) => {
-          const lowerEmail = this.userData.email.toLowerCase();
-          this.userData.email = lowerEmail;
-
-          const hashedPassword = hashSync(this.userData.password, 11);
-          this.userData.password = hashedPassword;
-
-          const Place = await db.insertOne(this.userData);
-
-          resolve(Place);
-        });
-      } catch (error) {
-        return reject(error);
-      }
-    });
+    // logic save data
   }
 
   checkExistUser() {
