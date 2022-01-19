@@ -1,7 +1,7 @@
 # Register_Login
 
 
-```Javascripts
+```Ruby
 class User {
   constructor(userData) {
     this.userData = { ...userData };
