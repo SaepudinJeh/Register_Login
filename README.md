@@ -10,7 +10,7 @@ class User {
   }
 
   save() {
-    // logic save data
+    # logic save data
   }
 
   checkExistUser() {
