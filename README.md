@@ -22,7 +22,7 @@ class User {
   }
   
   # Check User from Login
-  static Login() {
+  Login() {
     # Logic Login User
   }
 }
@@ -46,10 +46,12 @@ save() {
           # Save Data User to Databases
           const Place = await db.insertOne(this.userData);
           
-          # return result
+          # Return if successful
           resolve(Place);
         });
       } catch (error) {
+        
+        # Return if it fails
         return reject(error);
       }
     });
@@ -75,7 +77,7 @@ checkExistUser() {
           # If the user does not exist then return false, if there is already a true return
           if (!user) {
             
-            # return result
+            # Return if successful
             resolve({
               check: false,
             });
@@ -87,6 +89,46 @@ checkExistUser() {
             });
           }
         } catch (error) {
+        
+          # Return if it fails
+          return reject(error);
+        }
+      });
+    });
+  }
+```
+
+### Method Login User
+
+```Ruby
+Login() {
+    return new Promise((resolve, reject) => {
+      dbConnect('users', async (db) => {
+        try {
+          const { email, password } = this.userData;
+          
+          # Search by email and release email results, username, password
+          const user = await db.findOne(
+            { email: userData.email },
+            { projection: { email: 1, password: 1, username: 1 } },
+          );
+          
+          # Logic Compare passwords
+          if (
+            !user || !compareSync(this.userData.password, user.password)
+          ) {
+            return reject(
+              createError.Unauthorized(
+                'Please enter valid email and password',
+              ),
+            );
+          }
+          
+          # Return result
+          resolve(user);
+        } catch (error) {
+        
+          # Return if it fails
           return reject(error);
         }
       });
