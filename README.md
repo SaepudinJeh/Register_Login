@@ -45,7 +45,8 @@ save() {
           
           # Save Data User to Databases
           const Place = await db.insertOne(this.userData);
-
+          
+          # return result
           resolve(Place);
         });
       } catch (error) {
@@ -73,10 +74,13 @@ checkExistUser() {
           
           # If the user does not exist then return false, if there is already a true return
           if (!user) {
+            
+            # return result
             resolve({
               check: false,
             });
           } else if (emailUser === user.email) {
+            # return result
             resolve({
               check: true,
               message: 'This email is already in use',
